@@ -16,7 +16,9 @@ class Category(models.Model):
 class Expenses(models.Model):
     name = models.CharField(max_length=40, blank=True)
     value = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, default=''
+    )
     date = models.DateField(default=date.today)
 
     def __str__(self):
