@@ -6,8 +6,7 @@
 
         <h2>User Registration</h2><br>
 
-        <form method="post"> {#action="{% url 'register' %}#}
-
+        <form method="post">
             {% csrf_token %}
 
             <div class="form-group">{{ form.username }}</div>
@@ -19,7 +18,11 @@
 
             <input type="submit" class="btn btn-primary" id="btn_new" name="register" value="Register">
 
-{#            <div class="container"><p>Already have an account? <a href ="{% url 'login' %}">Sign in</a></p></div>#}
+            <div class="container">
+                <p>Already have an account?
+                    <a href ="{% url 'accounts:login' %}">Sign in</a>
+                </p>
+            </div>
         </form>
 
     </div>
