@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Apps
+    path('accounts/', include('accounts.urls')),
     path('', include('budget.urls')),
 ]
