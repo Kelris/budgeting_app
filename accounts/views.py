@@ -1,4 +1,3 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -12,6 +11,6 @@ class RegisterView(CreateView):
     template_name = 'accounts/register.html'
 
 
-class Login_View(LoginRequiredMixin, LoginView):
+class Login_View(LoginView):
     form_class = LoginForm
     template_name = 'accounts/login.html'

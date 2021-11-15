@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container rounded border col-10" id="base_container">
+        <p>You've been Logged Out.</p>
+        <p><a href="{% url 'accounts:login' %}">Login</a> again.</p>
+    </div>
+
+{% endblock %}

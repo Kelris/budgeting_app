@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <form method="get" class="form-group col-auto col-sm-4 col-md-4 col-lg-4" id="base_form">
+        {% csrf_token %}
+
+        <div id="form_field">{{ filter.form.name }}</div>
+        <div class="form-inline">
+            <div>{{ filter.form.start_date }}</div>&nbsp
+            <div>{{ filter.form.end_date }}</div>
+        </div>
+        <div class="form-inline">
+            <div>{{ filter.form.start_value }}</div>&nbsp
+            <div>{{ filter.form.end_value }}</div>
+        </div>
+        {{ filter.form.errors }}
+
+        <button type="submit" class="btn_my btn btn-secondary">Search</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr class="thead-light header">
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Date</th>
+                <th scope="col">Value</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+
+      {% for income in filter.qs %}
+          <tbody>
+              <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ income.id }}</td>
+                  <td>{{ income.date }}</td>
+                  <td>{{ income.value }}</td>
+                  <td>{{ income.name }}</td>
+              </tr>
+          </tbody>
+      {% endfor %}
+    </table>
+
+{% endblock %}

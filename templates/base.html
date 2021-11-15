@@ -10,13 +10,74 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
       <!-- Project CSS -->
-      <link rel="stylesheet" type="text/css" href="{% static 'Ecommerce/css/style.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'budget/css/style.css' %}">
 
   </head>
 
   <body>
-{% block content %}
-    BASE HTML
-{% endblock content %}
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light navbar-dark bg-dark ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hello, {{ user.username }}!</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'budget:index' %}"> Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'budget:categories_list' %}">List of categories</a>
+                        <a class="dropdown-item" href="{% url 'budget:category_create' %}"> Add new Category</a>
+                        <a class="dropdown-item" href="{% url 'budget:category_update' id=1 %}"> Update existing Category [id]</a>
+                        <a class="dropdown-item" href="{% url 'budget:category_delete' id=1 %}"> Delete existing Category [id]</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Expenses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'budget:expenses_list' %}">List of Expenses</a>
+                        <a class="dropdown-item" href="{% url 'budget:expense_create' %}">Add new Expense</a>
+                        <a class="dropdown-item" href="{% url 'budget:expense_update' id=1 %}">Update existing Expense [id]</a>
+                        <a class="dropdown-item" href="{% url 'budget:expense_delete' id=1 %}">Delete existing Expense [id]</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Income
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'budget:income_list' %}">List of Income</a>
+                        <a class="dropdown-item" href="{% url 'budget:income_create' %}">Add new Income</a>
+                        <a class="dropdown-item" href="{% url 'budget:income_update' id=1 %}">Update existing Income [id]</a>
+                        <a class="dropdown-item" href="{% url 'budget:income_delete' id=1 %}">Delete existing Income [id]</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a>
+                        <a class="dropdown-item" href="{% url 'accounts:login' %}">Log in</a>
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% block content %}{% endblock content %}
   </body>
 </html>

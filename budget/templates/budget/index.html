@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container rounded border col-10" id="base_container">
+        <h2>HOME BUDGET</h2>
+    </div>
+
+    <div class="container">
+        <p>
+            <a href ="{% url 'accounts:register' %}">Sign up</a>
+        or
+            <a href ="{% url 'accounts:login' %}">Sign in</a>
+        </p>
+    </div>
+
+{% endblock %}
