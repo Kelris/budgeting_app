@@ -10,7 +10,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ExpensesSerializer(serializers.ModelSerializer):
-    category = serializers.StringRelatedField()
 
     class Meta:
         model = Expenses
