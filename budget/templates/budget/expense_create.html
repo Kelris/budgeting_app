@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <form method="post" class="form-group col-auto col-sm-auto col-md-4 col-lg-4" id="base_form">
+        {% csrf_token %}
+
+        <div id="form_field">{{ form.name }}</div>
+        {{ form.errors.name }}
+        <div id="form_field">{{ form.value }}</div>
+        {{ form.errors.value }}
+        <div id="form_field">{{ form.category }}</div>
+        {{ form.errors.category }}
+        <div id="form_field">{{ form.date }}</div>
+        {{ form.errors.date }}
+
+        <button type="submit" class="btn_my btn btn-secondary">Create</button>
+    </form>
+{% endblock %}
