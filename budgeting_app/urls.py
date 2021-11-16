@@ -21,5 +21,6 @@ urlpatterns = [
 
     # Apps
     path('accounts/', include('accounts.urls')),
-    path('', include('budget.urls')),
+    path('budget/', include('budget.urls')),
+    path('api/', include('api.urls')),
 ]

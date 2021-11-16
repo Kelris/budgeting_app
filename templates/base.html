@@ -28,6 +28,16 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hello, {{ user.username }}!</a>
                     </li>
                 {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a>
+                        <a class="dropdown-item" href="{% url 'accounts:login' %}">Log in</a>
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out</a>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'budget:index' %}"> Home</a>
                 </li>
@@ -67,12 +77,15 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      User
+                      API
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a>
-                        <a class="dropdown-item" href="{% url 'accounts:login' %}">Log in</a>
-                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out</a>
+                        <a class="dropdown-item" href="{% url 'api:categories_list' %}">Categories List</a>
+                        <a class="dropdown-item" href="{% url 'api:category_update' id=1%}">Category Update [id]</a>
+                        <a class="dropdown-item" href="{% url 'api:expenses_list' %}">Expenses List</a>
+                        <a class="dropdown-item" href="{% url 'api:expense_update' id=1%}">Expense Update [id]</a>
+                        <a class="dropdown-item" href="{% url 'api:income_list' %}">Income List</a>
+                        <a class="dropdown-item" href="{% url 'api:income_update' id=1%}">Income Update [id]</a>
                     </div>
                 </li>
             </ul>
