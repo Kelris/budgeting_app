@@ -12,7 +12,7 @@ class CategoriesFilter(django_filters.FilterSet):
         widget=TextInput(
             {
                 'class': 'form-control',
-                'placeholder': 'Name contains ...'
+                'placeholder': 'Category name contains ...'
             }
         )
     )
@@ -29,7 +29,7 @@ class ExpensesFilter(django_filters.FilterSet):
         widget=TextInput(
             {
                 'class': 'form-control',
-                'placeholder': 'Category contains ...'
+                'placeholder': 'Category name contains ...'
             }
         )
     )
@@ -86,7 +86,7 @@ class IncomeFilter(django_filters.FilterSet):
         widget=TextInput(
             {
                 'class': 'form-control',
-                'placeholder': 'Name contains ...'
+                'placeholder': 'Income name contains ...'
             }
         )
     )
