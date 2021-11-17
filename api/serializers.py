@@ -9,7 +9,19 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
+class UserFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
+    def get_queryset(self):
+        request = self.context.get('request', None)
+        queryset = super(UserFilteredPrimaryKeyRelatedField, self).get_queryset()  # noqa
+        if not request or not queryset:
+            return None
+        return queryset.filter(owner=request.user)
+
+
 class ExpensesSerializer(serializers.ModelSerializer):
+    category = UserFilteredPrimaryKeyRelatedField(
+        queryset=Category.objects.all()
+    )
 
     class Meta:
         model = Expenses

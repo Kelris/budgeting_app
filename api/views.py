@@ -1,12 +1,17 @@
 from rest_framework import generics
+
 from api.serializers import (CategorySerializer, ExpensesSerializer,
                              IncomeSerializer)
 from budget.models import Category, Expenses, Income
 
 
 class CategoriesListAndCreateAPIView(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Category.objects.filter(owner=user)
 
 
 class CategoryDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -14,10 +19,18 @@ class CategoryDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     lookup_field = "id"
 
+    def get_queryset(self):
+        user = self.request.user
+        return Category.objects.filter(owner=user)
+
 
 class ExpensesListAndCreateAPIView(generics.ListCreateAPIView):
-    queryset = Expenses.objects.all()
     serializer_class = ExpensesSerializer
+    queryset = Expenses.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Expenses.objects.filter(category__owner=user)
 
 
 class ExpenseDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -25,13 +38,25 @@ class ExpenseDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Expenses.objects.all()
     lookup_field = "id"
 
+    def get_queryset(self):
+        user = self.request.user
+        return Expenses.objects.filter(category__owner=user)
+
 
 class IncomeListAndCreateAPIView(generics.ListCreateAPIView):
-    queryset = Income.objects.all()
     serializer_class = IncomeSerializer
+    queryset = Income.objects.all()
+
+    def get_queryset(self):
+        user = self.request.user
+        return Income.objects.filter(owner=user)
 
 
 class IncomeDetailUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = IncomeSerializer
     queryset = Income.objects.all()
     lookup_field = "id"
+
+    def get_queryset(self):
+        user = self.request.user
+        return Income.objects.filter(owner=user)
