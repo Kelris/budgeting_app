@@ -4,9 +4,11 @@ from budget.models import Category, Expenses, Income
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'owner']
 
 
 class UserFilteredPrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
@@ -35,6 +37,8 @@ class ExpensesSerializer(serializers.ModelSerializer):
 
 
 class IncomeSerializer(serializers.ModelSerializer):
+    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Income
         fields = [
@@ -42,4 +46,5 @@ class IncomeSerializer(serializers.ModelSerializer):
             'name',
             'value',
             'date',
+            'owner',
         ]
