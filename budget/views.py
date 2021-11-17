@@ -182,7 +182,7 @@ class IncomeUpdateView(UpdateView, LoginRequiredMixin):
 class IncomeDeleteView(DeleteView, LoginRequiredMixin):
     model = Income
     form_class = IncomeForm
-    template_name = 'budget/expense_delete.html'
+    template_name = 'budget/income_delete.html'
     success_url = reverse_lazy('budget:income_list')
 
     def get_object(self):
