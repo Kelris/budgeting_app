@@ -22,5 +22,6 @@ urlpatterns = [
     # Apps
     path('accounts/', include('accounts.urls')),
     path('budget/', include('budget.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
 ]
